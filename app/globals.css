@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Digital Pearls — Brand design tokens                              */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Brand palette */
+  --color-navy: #0d234a; /* Primary Navy (Deep Navy) */
+  --color-midnight: #081221; /* Dark Background */
+  --color-royal: #294f87; /* Secondary Blue (Royal Navy) */
+  --color-silver: #c9cdd3; /* Silver */
+  --color-pearl: #f5f7fa; /* Light Grey (Pearl White) */
+  --color-white: #ffffff;
+  --color-gold: #d6b25e; /* Accent — Soft Gold (use sparingly) */
+
+  /* Semantic aliases */
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-navy);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+
+  /* Layout */
+  --spacing-section: 7rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  border-color: color-mix(in srgb, var(--color-silver) 60%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 35%, transparent);
+  color: var(--color-navy);
+}
+
+/* Refined display headings */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Small eyebrow / label style used across sections */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Thin gold rule used as a premium accent */
+.gold-rule {
+  height: 1px;
+  width: 3rem;
+  background: linear-gradient(
+    to right,
+    var(--color-gold),
+    color-mix(in srgb, var(--color-gold) 0%, transparent)
+  );
+}
+
+/* Subtle blueprint grid for dark sections */
+.blueprint-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-royal) 22%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-royal) 22%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

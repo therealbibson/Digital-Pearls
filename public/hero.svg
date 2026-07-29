@@ -1,0 +1,93 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract precision architecture">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081221"/>
+      <stop offset="0.55" stop-color="#0D234A"/>
+      <stop offset="1" stop-color="#081221"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.32" r="0.6">
+      <stop offset="0" stop-color="#294F87" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#294F87" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D6B25E" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#D6B25E"/>
+      <stop offset="1" stop-color="#D6B25E" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#294F87" stroke-opacity="0.16" stroke-width="1"/>
+    </pattern>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1100" fill="url(#bg)"/>
+  <rect width="1600" height="1100" fill="url(#grid)"/>
+  <rect width="1600" height="1100" fill="url(#glow)"/>
+
+  <!-- Fragmented / sprawling side (left): scattered nodes and loose links -->
+  <g stroke="#C9CDD3" stroke-opacity="0.28" stroke-width="1.2" fill="none">
+    <path d="M120 220 L300 340 L210 520 L360 470"/>
+    <path d="M140 640 L320 700 L260 860"/>
+    <path d="M300 340 L470 300"/>
+    <path d="M360 470 L520 560"/>
+    <path d="M320 700 L500 640"/>
+  </g>
+  <g fill="#C9CDD3" fill-opacity="0.55">
+    <circle cx="120" cy="220" r="5"/>
+    <circle cx="300" cy="340" r="5"/>
+    <circle cx="210" cy="520" r="5"/>
+    <circle cx="360" cy="470" r="5"/>
+    <circle cx="140" cy="640" r="5"/>
+    <circle cx="320" cy="700" r="5"/>
+    <circle cx="260" cy="860" r="5"/>
+    <circle cx="470" cy="300" r="4"/>
+    <circle cx="520" cy="560" r="4"/>
+    <circle cx="500" cy="640" r="4"/>
+  </g>
+
+  <!-- Convergence lines flowing right into ordered structure -->
+  <g stroke="url(#goldLine)" stroke-width="1.4" fill="none" opacity="0.9">
+    <path d="M470 300 C 700 380, 820 420, 1040 440"/>
+    <path d="M520 560 C 720 540, 860 540, 1040 540"/>
+    <path d="M500 640 C 740 680, 880 660, 1040 640"/>
+  </g>
+
+  <!-- Ordered, precise structure (right): clean concentric + framed grid -->
+  <g transform="translate(1040 300)">
+    <rect x="0" y="0" width="440" height="500" rx="10" fill="#0D234A" fill-opacity="0.35" stroke="#294F87" stroke-opacity="0.5"/>
+    <g stroke="#294F87" stroke-opacity="0.35" stroke-width="1">
+      <line x1="110" y1="0" x2="110" y2="500"/>
+      <line x1="220" y1="0" x2="220" y2="500"/>
+      <line x1="330" y1="0" x2="330" y2="500"/>
+      <line x1="0" y1="125" x2="440" y2="125"/>
+      <line x1="0" y1="250" x2="440" y2="250"/>
+      <line x1="0" y1="375" x2="440" y2="375"/>
+    </g>
+    <!-- Precise nodes on the grid -->
+    <g fill="#D6B25E">
+      <circle cx="110" cy="125" r="5.5"/>
+      <circle cx="330" cy="375" r="5.5"/>
+    </g>
+    <g fill="#F5F7FA" fill-opacity="0.9">
+      <circle cx="220" cy="250" r="6"/>
+      <circle cx="110" cy="375" r="4"/>
+      <circle cx="330" cy="125" r="4"/>
+      <circle cx="220" cy="125" r="4"/>
+      <circle cx="110" cy="250" r="4"/>
+      <circle cx="330" cy="250" r="4"/>
+    </g>
+    <g stroke="#F5F7FA" stroke-opacity="0.5" stroke-width="1.2" fill="none">
+      <path d="M110 125 L220 250 L330 375"/>
+      <path d="M330 125 L220 250 L110 375"/>
+    </g>
+    <!-- Central precision ring -->
+    <circle cx="220" cy="250" r="52" fill="none" stroke="#D6B25E" stroke-opacity="0.7" stroke-width="1.4"/>
+    <circle cx="220" cy="250" r="80" fill="none" stroke="#294F87" stroke-opacity="0.5" stroke-width="1"/>
+  </g>
+
+  <!-- Soft ambient orbs -->
+  <circle cx="1180" cy="240" r="90" fill="#294F87" fill-opacity="0.25" filter="url(#soft)"/>
+  <circle cx="360" cy="900" r="70" fill="#0D234A" fill-opacity="0.5" filter="url(#soft)"/>
+</svg>
