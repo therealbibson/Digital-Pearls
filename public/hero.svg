@@ -1,4 +1,4 @@
-<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract precision architecture">
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract precision architecture converging into a pearl">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#081221"/>
@@ -12,14 +12,35 @@
     <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#D6B25E" stop-opacity="0"/>
       <stop offset="0.5" stop-color="#D6B25E"/>
-      <stop offset="1" stop-color="#D6B25E" stop-opacity="0"/>
+      <stop offset="1" stop-color="#D6B25E"/>
     </linearGradient>
     <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
       <path d="M60 0H0V60" fill="none" stroke="#294F87" stroke-opacity="0.16" stroke-width="1"/>
     </pattern>
-    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
       <feGaussianBlur stdDeviation="6"/>
     </filter>
+
+    <!-- Pearl mark gradients (match the logo mark) -->
+    <radialGradient id="heroPearl" cx="0.38" cy="0.33" r="0.75">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.45" stop-color="#E7ECF3"/>
+      <stop offset="0.8" stop-color="#C1C8D2"/>
+      <stop offset="1" stop-color="#98A1B0"/>
+    </radialGradient>
+    <radialGradient id="heroPearlHi" cx="0.36" cy="0.30" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7CB80"/>
+      <stop offset="0.5" stop-color="#D6B25E"/>
+      <stop offset="1" stop-color="#B5903C"/>
+    </linearGradient>
+    <radialGradient id="heroHalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#294F87" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#294F87" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <rect width="1600" height="1100" fill="url(#bg)"/>
@@ -47,47 +68,45 @@
     <circle cx="500" cy="640" r="4"/>
   </g>
 
-  <!-- Convergence lines flowing right into ordered structure -->
+  <!-- Convergence lines flowing right, into the pearl -->
   <g stroke="url(#goldLine)" stroke-width="1.4" fill="none" opacity="0.9">
-    <path d="M470 300 C 700 380, 820 420, 1040 440"/>
-    <path d="M520 560 C 720 540, 860 540, 1040 540"/>
-    <path d="M500 640 C 740 680, 880 660, 1040 640"/>
+    <path d="M470 300 C 770 380, 970 430, 1150 484"/>
+    <path d="M520 560 C 790 540, 980 524, 1150 520"/>
+    <path d="M500 640 C 790 700, 980 596, 1150 558"/>
   </g>
 
-  <!-- Ordered, precise structure (right): clean concentric + framed grid -->
-  <g transform="translate(1040 300)">
-    <rect x="0" y="0" width="440" height="500" rx="10" fill="#0D234A" fill-opacity="0.35" stroke="#294F87" stroke-opacity="0.5"/>
-    <g stroke="#294F87" stroke-opacity="0.35" stroke-width="1">
-      <line x1="110" y1="0" x2="110" y2="500"/>
-      <line x1="220" y1="0" x2="220" y2="500"/>
-      <line x1="330" y1="0" x2="330" y2="500"/>
-      <line x1="0" y1="125" x2="440" y2="125"/>
-      <line x1="0" y1="250" x2="440" y2="250"/>
-      <line x1="0" y1="375" x2="440" y2="375"/>
-    </g>
-    <!-- Precise nodes on the grid -->
+  <!-- Ordered precision, resolving into the pearl (right side) -->
+  <g transform="translate(1300 520) scale(1.28)">
+    <!-- ambient halo -->
+    <circle r="230" fill="url(#heroHalo)"/>
+
+    <!-- precision orbits -->
+    <circle r="176" fill="none" stroke="#294F87" stroke-opacity="0.45" stroke-width="1"/>
+    <circle r="142" fill="none" stroke="#D6B25E" stroke-opacity="0.30" stroke-width="1"/>
+    <circle r="142" fill="none" stroke="#D6B25E" stroke-opacity="0.55" stroke-width="1.3" stroke-dasharray="1.5 11"/>
+
+    <!-- orbit accent nodes -->
     <g fill="#D6B25E">
-      <circle cx="110" cy="125" r="5.5"/>
-      <circle cx="330" cy="375" r="5.5"/>
+      <circle cx="0" cy="-142" r="5"/>
+      <circle cx="123" cy="71" r="5"/>
+      <circle cx="-123" cy="71" r="5"/>
     </g>
-    <g fill="#F5F7FA" fill-opacity="0.9">
-      <circle cx="220" cy="250" r="6"/>
-      <circle cx="110" cy="375" r="4"/>
-      <circle cx="330" cy="125" r="4"/>
-      <circle cx="220" cy="125" r="4"/>
-      <circle cx="110" cy="250" r="4"/>
-      <circle cx="330" cy="250" r="4"/>
+    <g fill="#F5F7FA" fill-opacity="0.85">
+      <circle cx="142" cy="0" r="3.5"/>
+      <circle cx="-142" cy="0" r="3.5"/>
     </g>
-    <g stroke="#F5F7FA" stroke-opacity="0.5" stroke-width="1.2" fill="none">
-      <path d="M110 125 L220 250 L330 375"/>
-      <path d="M330 125 L220 250 L110 375"/>
-    </g>
-    <!-- Central precision ring -->
-    <circle cx="220" cy="250" r="52" fill="none" stroke="#D6B25E" stroke-opacity="0.7" stroke-width="1.4"/>
-    <circle cx="220" cy="250" r="80" fill="none" stroke="#294F87" stroke-opacity="0.5" stroke-width="1"/>
+
+    <!-- gold ring + pearl -->
+    <circle r="112" fill="none" stroke="url(#heroGold)" stroke-width="3"/>
+    <circle r="94" fill="url(#heroPearl)"/>
+    <circle r="94" fill="url(#heroPearlHi)"/>
+
+    <!-- specular highlights -->
+    <ellipse cx="-30" cy="-36" rx="26" ry="17" fill="#FFFFFF" fill-opacity="0.55" filter="url(#soft)"/>
+    <circle cx="-40" cy="-44" r="8" fill="#FFFFFF" fill-opacity="0.9"/>
   </g>
 
   <!-- Soft ambient orbs -->
-  <circle cx="1180" cy="240" r="90" fill="#294F87" fill-opacity="0.25" filter="url(#soft)"/>
+  <circle cx="1180" cy="200" r="90" fill="#294F87" fill-opacity="0.22" filter="url(#soft)"/>
   <circle cx="360" cy="900" r="70" fill="#0D234A" fill-opacity="0.5" filter="url(#soft)"/>
 </svg>

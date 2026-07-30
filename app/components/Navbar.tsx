@@ -29,23 +29,28 @@ export default function Navbar() {
     setOpen(false);
   }, [pathname]);
 
+  // Solid white bar when scrolled or when the mobile menu is open;
+  // transparent (over the dark hero) at the very top.
+  const solid = scrolled || open;
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+        solid
           ? "border-b border-silver/50 bg-white/90 backdrop-blur-md"
-          : "border-b border-transparent bg-white"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 lg:px-10">
         <Link href="/" className="flex items-center" aria-label="Digital Pearls — home">
+          {/* Dark logo on the solid white bar; white logo over the dark hero */}
           <Image
-            src="/logo.svg"
+            src={solid ? "/logo.svg" : "/logo-light.svg"}
             alt="Digital Pearls"
-            width={210}
-            height={42}
+            width={300}
+            height={54}
             priority
-            className="h-9 w-auto"
+            className="h-10 w-auto md:h-11"
           />
         </Link>
 
@@ -57,8 +62,14 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`relative text-sm font-medium transition-colors ${
-                  active ? "text-navy" : "text-navy/70 hover:text-navy"
+                className={`group relative text-sm font-medium transition-colors ${
+                  solid
+                    ? active
+                      ? "text-navy"
+                      : "text-navy/70 hover:text-navy"
+                    : active
+                      ? "text-white"
+                      : "text-white/80 hover:text-white"
                 }`}
               >
                 {l.label}
@@ -72,7 +83,11 @@ export default function Navbar() {
           })}
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-navy px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-royal hover:-translate-y-0.5"
+            className={`inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
+              solid
+                ? "bg-navy text-white hover:bg-royal"
+                : "bg-white/10 text-white ring-1 ring-white/50 backdrop-blur hover:bg-white hover:text-navy hover:ring-white"
+            }`}
           >
             Request Consultation
           </Link>
@@ -84,7 +99,9 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-silver/60 text-navy lg:hidden"
+          className={`flex h-11 w-11 items-center justify-center rounded-full border transition-colors lg:hidden ${
+            solid ? "border-silver/60 text-navy" : "border-white/40 text-white"
+          }`}
         >
           <span className="sr-only">Menu</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>

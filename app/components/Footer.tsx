@@ -18,9 +18,9 @@ export default function Footer() {
             <Image
               src="/logo-light.svg"
               alt="Digital Pearls"
-              width={200}
-              height={40}
-              className="h-9 w-auto"
+              width={300}
+              height={54}
+              className="h-10 w-auto"
             />
             <p className="mt-5 text-sm leading-relaxed text-silver/70">
               Precision architecture for high-stakes technology. We help
