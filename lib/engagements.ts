@@ -104,6 +104,26 @@ export async function updateEngagement(
   return result ? toEngagement(result) : null;
 }
 
+/**
+ * Persist a new ordering. `ids` is the full list in the desired order;
+ * each item's `order` is set to its index. Ignores ids that don't exist.
+ */
+export async function reorderEngagements(ids: string[]): Promise<Engagement[]> {
+  const col = await collection();
+  const valid = ids.filter((id) => ObjectId.isValid(id));
+  if (valid.length) {
+    await col.bulkWrite(
+      valid.map((id, index) => ({
+        updateOne: {
+          filter: { _id: new ObjectId(id) },
+          update: { $set: { order: index } },
+        },
+      }))
+    );
+  }
+  return listEngagements(false);
+}
+
 export async function deleteEngagement(id: string): Promise<boolean> {
   if (!ObjectId.isValid(id)) return false;
   const col = await collection();

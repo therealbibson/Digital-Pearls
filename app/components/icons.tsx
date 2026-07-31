@@ -97,6 +97,30 @@ export const Icons = {
       <path d="M8 10V7a4 4 0 0 1 8 0v3" {...p} />
     </Svg>
   ),
+  phone: (
+    <Svg>
+      <path
+        d="M5 4h3l1.5 4.5-2 1.5a11 11 0 0 0 5 5l1.5-2 4.5 1.5V18a2 2 0 0 1-2 2A15 15 0 0 1 5 6 2 2 0 0 1 5 4Z"
+        {...p}
+      />
+    </Svg>
+  ),
+};
+
+/**
+ * Social brand marks — filled glyphs, sized to match the UI (currentColor).
+ */
+export const SocialIcons = {
+  linkedin: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm6 0h3.8v1.64h.05c.53-1 1.83-2.06 3.77-2.06C20.6 8.58 22 10.24 22 13.4V21h-4v-6.75c0-1.61-.03-3.68-2.24-3.68-2.24 0-2.58 1.75-2.58 3.56V21H9V9Z" />
+    </svg>
+  ),
+  x: (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.42l7.73-8.83L1.5 2.25h6.8l4.7 6.21 5.24-6.21Zm-1.16 17.52h1.83L7.02 4.13H5.05L17.08 19.77Z" />
+    </svg>
+  ),
 };
 
 export type IconName = keyof typeof Icons;

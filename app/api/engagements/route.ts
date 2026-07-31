@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { listEngagements, createEngagement } from "@/lib/engagements";
+import { listEngagements, createEngagement, reorderEngagements } from "@/lib/engagements";
 import { isAuthenticated } from "@/lib/auth-server";
 
 export const runtime = "nodejs";
@@ -41,5 +41,29 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error("[engagements POST]", err);
     return NextResponse.json({ ok: false, error: "Failed to create." }, { status: 500 });
+  }
+}
+
+/** Admin only: persist a full reordering. Body: { ids: string[] } in desired order. */
+export async function PUT(req: Request) {
+  if (!(await isAuthenticated())) {
+    return NextResponse.json({ ok: false, error: "Unauthorized." }, { status: 401 });
+  }
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
+  }
+  const ids = Array.isArray(body.ids) ? body.ids.filter((v): v is string => typeof v === "string") : null;
+  if (!ids || ids.length === 0) {
+    return NextResponse.json({ ok: false, error: "ids array is required." }, { status: 422 });
+  }
+  try {
+    const items = await reorderEngagements(ids);
+    return NextResponse.json({ ok: true, engagements: items });
+  } catch (err) {
+    console.error("[engagements PUT]", err);
+    return NextResponse.json({ ok: false, error: "Failed to reorder." }, { status: 500 });
   }
 }

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./ui";
+import { SocialIcons } from "./icons";
+import { site } from "./site";
 
 const nav = [
   { href: "/about", label: "About" },
@@ -27,6 +29,21 @@ export default function Footer() {
               organizations eliminate architectural sprawl and transform
               fragmented technology into a controlled, high-performance engine.
             </p>
+
+            <div className="mt-6 flex items-center gap-3">
+              {site.socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-silver/70 transition-colors hover:border-gold/50 hover:text-gold"
+                >
+                  {SocialIcons[s.icon]}
+                </a>
+              ))}
+            </div>
           </div>
 
           <div>
@@ -50,10 +67,18 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-silver/75">
               <li>
                 <a
-                  href="mailto:advisory@digitalpearls.com"
+                  href={`mailto:${site.email}`}
                   className="transition-colors hover:text-white"
                 >
-                  advisory@digitalpearls.com
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${site.phone.tel}`}
+                  className="transition-colors hover:text-white"
+                >
+                  {site.phone.display}
                 </a>
               </li>
               <li>

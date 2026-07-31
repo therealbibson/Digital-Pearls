@@ -6,11 +6,11 @@ import Footer from "./Footer";
 
 /**
  * Renders the public site chrome (Navbar + Footer) around page content,
- * but omits it on /admin routes, which provide their own full-screen chrome.
+ * but omits it on /about/admin routes, which provide their own full-screen chrome.
  */
 export default function SiteFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin");
+  const isAdmin = pathname?.startsWith("/about/admin");
 
   if (isAdmin) {
     return <>{children}</>;

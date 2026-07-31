@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Allow the login page itself through.
-  if (pathname === "/admin/login") {
+  if (pathname === "/about/admin/login") {
     return NextResponse.next();
   }
 
@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
 
   if (!valid) {
     const url = req.nextUrl.clone();
-    url.pathname = "/admin/login";
+    url.pathname = "/about/admin/login";
     url.searchParams.set("from", pathname);
     return NextResponse.redirect(url);
   }
@@ -27,5 +27,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/about/admin/:path*"],
 };

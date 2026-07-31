@@ -28,7 +28,7 @@ function AdminLoginForm() {
         return;
       }
       const from = params.get("from");
-      router.replace(from && from.startsWith("/admin") ? from : "/admin");
+      router.replace(from && from.startsWith("/about/admin") ? from : "/about/admin");
       router.refresh();
     } catch {
       setError("Something went wrong. Try again.");

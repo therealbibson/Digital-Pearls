@@ -2,7 +2,8 @@ import { Container } from "../components/ui";
 import { PageHeader } from "../components/sections";
 import ContactForm from "../components/ContactForm";
 import Calendly from "../components/Calendly";
-import { Icons } from "../components/icons";
+import { Icons, SocialIcons } from "../components/icons";
+import { site } from "../components/site";
 
 export const metadata = {
   title: "Contact",
@@ -67,15 +68,39 @@ export default function ContactPage() {
               <div className="mt-12 rounded-2xl border border-silver/60 bg-pearl p-8">
                 <h3 className="eyebrow text-royal">Prefer email?</h3>
                 <a
-                  href="mailto:advisory@digitalpearls.com"
+                  href={`mailto:${site.email}`}
                   className="mt-3 block font-display text-xl text-navy transition-colors hover:text-royal"
                 >
-                  advisory@digitalpearls.com
+                  {site.email}
                 </a>
-                <p className="mt-3 text-sm leading-relaxed text-navy/60">
+
+                <h3 className="eyebrow mt-6 text-royal">Or call us</h3>
+                <a
+                  href={`tel:${site.phone.tel}`}
+                  className="mt-3 block font-display text-xl text-navy transition-colors hover:text-royal"
+                >
+                  {site.phone.display}
+                </a>
+
+                <p className="mt-4 text-sm leading-relaxed text-navy/60">
                   Every enquiry is handled directly by our advisory team, in
                   strict confidence.
                 </p>
+
+                <div className="mt-6 flex items-center gap-3 border-t border-silver/60 pt-6">
+                  {site.socials.map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.name}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-silver/60 text-navy/70 transition-colors hover:border-royal hover:text-royal"
+                    >
+                      {SocialIcons[s.icon]}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 

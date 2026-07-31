@@ -6,7 +6,7 @@ export default function LogoutButton() {
   const router = useRouter();
   async function logout() {
     await fetch("/api/admin/logout", { method: "POST" });
-    router.replace("/admin/login");
+    router.replace("/about/admin/login");
     router.refresh();
   }
   return (
