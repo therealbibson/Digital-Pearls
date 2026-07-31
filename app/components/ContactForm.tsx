@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
-const engagementTypes = [
+// Fallback list — used only if the API can't be reached, so the form never breaks.
+const fallbackEngagements = [
   "Enterprise Architecture",
   "Data Management",
   "Cloud Computing",
@@ -23,6 +24,27 @@ const labelBase = "text-sm font-medium text-navy";
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState("");
+  const [engagements, setEngagements] = useState<string[]>(fallbackEngagements);
+
+  // Load the engagement options managed by the owner in the admin panel.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/engagements")
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        if (data?.ok && Array.isArray(data.engagements) && data.engagements.length) {
+          setEngagements(data.engagements.map((e: { label: string }) => e.label));
+        }
+      })
+      .catch(() => {
+        /* keep the fallback list */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   function validate(data: FormData) {
     const next: Record<string, string> = {};
@@ -40,8 +62,9 @@ export default function ContactForm() {
     return next;
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSubmitError("");
     const form = e.currentTarget;
     const data = new FormData(form);
     const next = validate(data);
@@ -49,12 +72,38 @@ export default function ContactForm() {
     if (Object.keys(next).length > 0) return;
 
     setStatus("submitting");
-    // Front-end only for now — no backend wired up yet.
-    // Replace this with a POST to your API / scheduler / email service.
-    setTimeout(() => {
+    const payload = {
+      name: (data.get("name") as string) || "",
+      email: (data.get("email") as string) || "",
+      company: (data.get("company") as string) || "",
+      engagement: (data.get("engagement") as string) || "",
+      message: (data.get("message") as string) || "",
+      website: (data.get("website") as string) || "", // honeypot
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (result?.errors) setErrors(result.errors);
+        else setSubmitError(result?.error || "Something went wrong. Please try again.");
+        setStatus("idle");
+        return;
+      }
+
       setStatus("success");
       form.reset();
-    }, 700);
+    } catch {
+      setSubmitError(
+        "We couldn't submit your request. Please try again, or email us directly."
+      );
+      setStatus("idle");
+    }
   }
 
   if (status === "success") {
@@ -112,8 +161,11 @@ export default function ContactForm() {
           <label htmlFor="engagement" className={labelBase}>
             Engagement of interest
           </label>
-          <select id="engagement" name="engagement" className={fieldBase} defaultValue="Architecture Audit">
-            {engagementTypes.map((t) => (
+          <select id="engagement" name="engagement" className={fieldBase} defaultValue="">
+            <option value="" disabled>
+              Select an option…
+            </option>
+            {engagements.map((t) => (
               <option key={t} value={t}>
                 {t}
               </option>
@@ -135,6 +187,18 @@ export default function ContactForm() {
         />
         {errors.message ? <p className="text-sm text-red-600">{errors.message}</p> : null}
       </div>
+
+      {/* Honeypot — hidden from users, catches bots. */}
+      <div className="hidden" aria-hidden>
+        <label htmlFor="website">Leave this field empty</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      {submitError ? (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {submitError}
+        </div>
+      ) : null}
 
       <button
         type="submit"

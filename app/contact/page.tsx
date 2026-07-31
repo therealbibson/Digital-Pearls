@@ -1,6 +1,7 @@
 import { Container } from "../components/ui";
 import { PageHeader } from "../components/sections";
 import ContactForm from "../components/ContactForm";
+import Calendly from "../components/Calendly";
 import { Icons } from "../components/icons";
 
 export const metadata = {
@@ -88,6 +89,25 @@ export default function ContactPage() {
                 <ContactForm />
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Direct scheduling via Calendly */}
+      <section className="bg-pearl">
+        <Container className="py-[var(--spacing-section)]">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="eyebrow text-royal">Prefer to book directly?</h2>
+            <p className="mt-4 font-display text-2xl text-navy sm:text-3xl">
+              Pick a time that works for you
+            </p>
+            <p className="mt-3 leading-relaxed text-navy/70">
+              Choose a slot below and we&apos;ll send a calendar invite with a
+              reminder. No back-and-forth required.
+            </p>
+          </div>
+          <div className="mx-auto mt-10 max-w-3xl">
+            <Calendly />
           </div>
         </Container>
       </section>
